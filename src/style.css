@@ -34,7 +34,7 @@ nav > div:first-of-type {
   display: flex;
   justify-content: space-between;
   font-size: 1.4rem;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
 }
 
 nav > div > button {
@@ -81,6 +81,10 @@ nav img {
   border: solid 1px #c9b333;
   border-radius: 6px;
   justify-content: space-between;
+}
+
+.project-item:hover {
+  background-color: #373008;;
 }
 
 #project-option {
