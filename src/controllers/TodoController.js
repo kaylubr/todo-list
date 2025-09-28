@@ -11,6 +11,16 @@ if (!window.localStorage.getItem('projects')) {
   );
 }
 
+export function addTodoInDefault(title, desc, dueDate, priority) {
+  const project = fetchProject('inbox');
+
+  const newTodo = new Todo(title, desc, dueDate, priority);
+  project.todos.push(newTodo);
+
+  const oldProjects = fetchAllProjects();
+  
+  window.localStorage.setItem('projects', JSON.stringify({ ...oldProjects, inbox: project }));
+}
 
 function fetchAllProjects() {
   return JSON.parse(window.localStorage.getItem('projects'));
