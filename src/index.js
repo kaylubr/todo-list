@@ -1,3 +1,3 @@
-import { editTodo } from "./controllers/TodoController";
+import { deleteTodo } from "./controllers/TodoController";
 
-window.editTodo = editTodo;
+window.deleteTodo = deleteTodo;

@@ -67,7 +67,21 @@ export function editTodo(projectName, id, title, desc, dueDate, priority) {
   }
 }
 
-function fetchAllProjects() {
+export function deleteTodo(projectName, id) {
+  const project = fetchProject(projectName);
+  if (project) {
+    // If the id is not equal to the id param, it will be not filtered
+    project.todos = project.todos.filter(todo => todo.id !== id);
+
+    const oldProjects = fetchAllProjects();
+  
+    window.localStorage.setItem('projects', JSON.stringify({ ...oldProjects, [projectName]: project }));
+  } else {
+    throw new Error('Project not found!')
+  }
+}
+
+export function fetchAllProjects() {
   return JSON.parse(window.localStorage.getItem('projects'));
 }
 
