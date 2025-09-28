@@ -40,7 +40,7 @@ export function addTodoInProject(projectName, title, desc, dueDate, priority) {
     project.todos.push(newTodo);
 
     const oldProjects = fetchAllProjects();
-
+  
     window.localStorage.setItem('projects', JSON.stringify({ ...oldProjects, [projectName]: project }));
   } else {
     throw new Error('Project not found!')
