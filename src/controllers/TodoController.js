@@ -81,6 +81,23 @@ export function deleteTodo(projectName, id) {
   }
 }
 
+export function completeTodo(projectName, id) {
+  const project = fetchProject(projectName);
+  if (project) {
+    const todoToEdit = project.todos.find(todo => todo.id === id);
+    todoToEdit.completed = true;
+
+    // Replaces the old todo with the new one using map
+    project.todos.map(todo => todo.id === id ? todoToEdit : todo);
+
+    const oldProjects = fetchAllProjects();
+  
+    window.localStorage.setItem('projects', JSON.stringify({ ...oldProjects, [projectName]: project }));
+  } else {
+    throw new Error('Project not found!')
+  }
+} 
+
 export function fetchAllProjects() {
   return JSON.parse(window.localStorage.getItem('projects'));
 }
