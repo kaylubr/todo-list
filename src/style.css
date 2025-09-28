@@ -1,0 +1,95 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  min-height: 100vh;
+  background-color: #0f2150;
+  color: whitesmoke;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  border-right: solid 1px #0f1c3d;
+}
+
+nav > h1 {
+  font-size: 3rem;
+}
+
+nav > div:first-of-type {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  padding: 1.5rem 0;
+}
+
+nav > div > button {
+  background-color: transparent;
+  color: whitesmoke;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0 1px;
+}
+
+nav > div > button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+nav li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+nav li:hover {
+  cursor: pointer;
+  background-color: #0f1c3d;
+}
+
+nav img {
+  width: 10%;
+}
+
+.project-item {
+  color: #c9b333;
+  border: solid 1px #c9b333;
+  border-radius: 6px;
+  justify-content: space-between;
+}
+
+#project-option {
+  padding-bottom: 10px;
+  background-color: transparent;
+  border: none;
+  color: #c9b333;;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#project-option:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
