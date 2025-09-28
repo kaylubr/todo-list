@@ -11,7 +11,12 @@ if (!window.localStorage.getItem('projects')) {
   );
 }
 
-export function fetchProject(projectName) {
+
+function fetchAllProjects() {
+  return JSON.parse(window.localStorage.getItem('projects'));
+}
+
+function fetchProject(projectName) {
   const projects = JSON.parse(window.localStorage.getItem('projects'));
   const key = Object.keys(projects).find(name => name === projectName);
   
