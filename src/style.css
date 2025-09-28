@@ -12,6 +12,10 @@ body {
   min-height: 100vh;
   background-color: #0f2150;
   color: whitesmoke;
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 nav {
@@ -58,7 +62,7 @@ nav li {
   align-items: center;
   gap: 12px;
   list-style: none;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   padding: 0.5rem 1rem;
   border-radius: 8px;
 }
