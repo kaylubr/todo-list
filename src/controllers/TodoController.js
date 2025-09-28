@@ -33,6 +33,20 @@ export function addProject(projectName) {
   }
 }
 
+export function addTodoInProject(projectName, title, desc, dueDate, priority) {
+  const project = fetchProject(projectName);
+  if (project) {
+    const newTodo = new Todo(title, desc, dueDate, priority);
+    project.todos.push(newTodo);
+
+    const oldProjects = fetchAllProjects();
+
+    window.localStorage.setItem('projects', JSON.stringify({ ...oldProjects, [projectName]: project }));
+  } else {
+    throw new Error('Project not found!')
+  }
+}
+
 function fetchAllProjects() {
   return JSON.parse(window.localStorage.getItem('projects'));
 }
