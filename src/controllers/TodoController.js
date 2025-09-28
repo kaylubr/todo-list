@@ -47,6 +47,26 @@ export function addTodoInProject(projectName, title, desc, dueDate, priority) {
   }
 }
 
+export function editTodo(projectName, id, title, desc, dueDate, priority) {
+  const project = fetchProject(projectName);
+  if (project) {
+    const todoToEdit = project.todos.find(todo => todo.id === id);
+    todoToEdit.title = title;
+    todoToEdit.desc = desc;
+    todoToEdit.dueDate = dueDate;
+    todoToEdit.priority = priority;
+
+    // Replaces the old todo with the new one using map
+    project.todos.map(todo => todo.id === id ? todoToEdit : todo);
+
+    const oldProjects = fetchAllProjects();
+  
+    window.localStorage.setItem('projects', JSON.stringify({ ...oldProjects, [projectName]: project }));
+  } else {
+    throw new Error('Project not found!')
+  }
+}
+
 function fetchAllProjects() {
   return JSON.parse(window.localStorage.getItem('projects'));
 }
