@@ -111,7 +111,12 @@ nav img {
 }
 
 #addTaskBtn {
-  background-color: transparent;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #2C74B3;
   color: whitesmoke;
   border: 0px;
   cursor: pointer;
@@ -124,7 +129,6 @@ nav img {
 
 #addTaskBtn:hover {
   transform: scale(1.1);
-  text-shadow: 0 0 15px rgba(255,255,255,.5), 0 0 10px rgba(255,255,255,.5);
 }
 
 /* Todo card */

@@ -9,7 +9,14 @@ export default function ScreenController() {
   const closeDialogBtn = document.querySelector('#addTaskDialog button:first-of-type');
   const confirmAddBtn = document.querySelector('#addTaskDialog button:last-of-type');
   const addTaskBtn = document.querySelector('#addTaskBtn');
-      
+
+  // Dialog inputs for adding todo's
+  const title = document.querySelector('title');
+  const description = document.querySelector('description');
+  const dueDate = document.querySelector('dueDate');
+  const priority = document.querySelector('priority');
+  
+
   // Opens modal for adding tasks
   addTaskBtn.addEventListener('click', event => {
     addTaskDialog.showModal();
