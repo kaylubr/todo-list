@@ -206,7 +206,9 @@ nav img {
   padding: 2rem;
 }
 
-#taskDialogContainer > form > *:not(div) {
+#taskDialogContainer > form > *:not(div),
+#projectsDropdown {
+  cursor: pointer;
   padding: 6px 12px;
   font-size: 16px;
   font-weight: 400;

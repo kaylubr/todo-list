@@ -11,6 +11,7 @@ export default function ScreenController() {
   const addTaskBtn = document.querySelector('#addTaskBtn');
 
   // Dialog inputs for adding todo's
+  const projectName = document.querySelector('#projectsDropdown');
   const title = document.querySelector('title');
   const description = document.querySelector('description');
   const dueDate = document.querySelector('dueDate');
