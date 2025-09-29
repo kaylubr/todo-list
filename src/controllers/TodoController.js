@@ -98,6 +98,11 @@ export function completeTodo(projectName, id) {
   }
 } 
 
+export function getAllTodos(projectName) {
+  const project = fetchProject(projectName);
+  return project.todos
+}
+
 export function getCompletedTodos() {
   const allProjects = JSON.parse(window.localStorage.getItem('projects'));
   const completedTodos = [];
