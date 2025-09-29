@@ -18,7 +18,7 @@ function todoPage(projectName, date = null, completedList = false) {
 }
 
 function renderTodos(mode = null) {
-  const allTodos = getAllTodos('inbox');
+  let allTodos = getAllTodos('inbox');
 
   allTodos.forEach(todo => {
     const todoCard = document.createElement('div');
@@ -43,7 +43,16 @@ function renderTodos(mode = null) {
 
     // End section
     const priority = document.createElement('div');
-    priority.textContent = todo.priority;
+    priority.setAttribute('id', 'priorityIndicator')
+    priority.textContent = todo.priority[0].toUpperCase() + todo.priority.slice(1);
+    if (todo.priority === 'low') {
+      priority.style.backgroundColor = '#006B3D';
+    } else if (todo.priority === 'medium') {
+      priority.style.backgroundColor = '#FFD301';
+    } else if (todo.priority === 'high') {
+      priority.style.backgroundColor = '#D61F1F';
+    }
+
     const todoOptionBtn = document.createElement('button');
     todoOptionBtn.textContent = '⚙️';
     endSection.append(priority, todoOptionBtn);
