@@ -45,8 +45,8 @@ export default function ScreenController() {
         addTaskDialog.showModal();
       });
 
+      // Close modal for adding tasks
       closeDialogBtn.addEventListener('click', () => addTaskDialog.close());
-
     });
   });
 
