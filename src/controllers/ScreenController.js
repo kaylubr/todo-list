@@ -1,5 +1,7 @@
 import todoPage from "../pages/todoPage";
 
+document.addEventListener('DOMContentLoaded', () => todoPage('inbox'));
+
 export default function ScreenController() {
   const navItems = document.querySelectorAll('.nav-item');
   const content = document.querySelector('#content');
@@ -49,5 +51,4 @@ export default function ScreenController() {
       closeDialogBtn.addEventListener('click', () => addTaskDialog.close());
     });
   });
-
 }
