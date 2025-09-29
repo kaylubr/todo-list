@@ -10,7 +10,7 @@ body {
   display: grid;
   grid-template-columns: 2fr 10fr;
   min-height: 100vh;
-  background-color: #0f2150;
+  background-color: #0B2447;
   color: whitesmoke;
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
@@ -101,3 +101,52 @@ nav img {
   cursor: pointer;
 }
 
+/* Dialog */
+#addTaskDialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border: none;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#addTaskDialog::backdrop {
+  backdrop-filter: blur(10px);
+}
+
+#taskDialogContainer {
+  background-color: #19376D;
+}
+
+#taskDialogContainer > form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+#taskDialogContainer > form > *:not(div) {
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+#taskDialogContainer button {
+  font-size: 1.2rem;
+  border-radius: 6px;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  background-color: #2C74B3;
+  color: whitesmoke;
+}
+
+#taskDialogContainer button:hover {
+  cursor: pointer;
+  background-color: #2c74b3d1;
+}

@@ -51,5 +51,42 @@
     </div>
   </nav>
   <div id="content"></div>
+
+  <!-- Dialogs -->
+  <dialog id="addTaskDialog">
+    <div id="taskDialogContainer">
+      <form method="dialog">
+        <input 
+          type="text" 
+          id="title" 
+          placeholder="Title"
+          min="3"
+          autofocus
+          required 
+        />
+        <input 
+          type="text" 
+          id="description" 
+          placeholder="Description"
+          min="5"
+          required 
+        />
+        <input 
+          type="date" 
+          id="dueDate"  
+          required 
+        />
+        <select id="priority">
+          <option value="low" selected>Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <div>
+          <button>Cancel</button>
+          <button>Confirm</button>
+        </div>
+        </form>
+    </div>
+  </dialog>
 </body>
 </html>

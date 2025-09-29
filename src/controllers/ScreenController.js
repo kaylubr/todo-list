@@ -3,7 +3,9 @@ import todoPage from "../pages/todoPage";
 export default function ScreenController() {
   const navItems = document.querySelectorAll('.nav-item');
   const content = document.querySelector('#content');
-
+  const addTaskDialog = document.querySelector('#addTaskDialog');
+  const closeDialogBtn = document.querySelector('#addTaskDialog button:first-of-type');
+  
   navItems.forEach(item => {
     item.addEventListener('click', event => {
       const sectionName = event.currentTarget.id;
@@ -36,6 +38,16 @@ export default function ScreenController() {
           break; 
       }
 
+      const addTaskBtn = document.querySelector('#addTaskBtn');
+      
+      // Opens modal for adding tasks
+      addTaskBtn.addEventListener('click', event => {
+        addTaskDialog.showModal();
+      });
+
+      closeDialogBtn.addEventListener('click', () => addTaskDialog.close());
+
     });
   });
+
 }
