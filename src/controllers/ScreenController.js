@@ -1,5 +1,8 @@
+import { format } from "date-fns";
 import { addTodo } from "./TodoController";
 import todoPage from "../pages/todoPage";
+
+const currentDate = format(new Date(), 'yyyy-MM-dd');
 
 document.addEventListener('DOMContentLoaded', () => todoPage('inbox'));
 
@@ -13,11 +16,14 @@ export default function ScreenController() {
 
   // Dialog inputs for adding todo's
   const projectName = document.querySelector('#projectsDropdown');
-  const title = document.querySelector('title');
-  const description = document.querySelector('description');
-  const dueDate = document.querySelector('dueDate');
-  const priority = document.querySelector('priority');
+  const title = document.querySelector('#title');
+  const description = document.querySelector('#description');
+  const dueDate = document.querySelector('#dueDate');
+  const priority = document.querySelector('#priority');
   
+  // Disable past days for dueDate
+  dueDate.setAttribute('min', currentDate);
+
   // Opens modal for adding tasks
   addTaskBtn.addEventListener('click', event => {
     addTaskDialog.showModal();
@@ -26,9 +32,6 @@ export default function ScreenController() {
   // Close modal for adding tasks
   closeDialogBtn.addEventListener('click', () => addTaskDialog.close());
 
-  confirmAddBtn.addEventListener('click', () => {
-
-  })
 
   navItems.forEach(item => {
     item.addEventListener('click', event => {
