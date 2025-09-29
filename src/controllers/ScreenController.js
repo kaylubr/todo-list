@@ -1,3 +1,5 @@
+import todoPage from "../pages/todoPage";
+
 export default function ScreenController() {
   const navItems = document.querySelectorAll('.nav-item');
   const content = document.querySelector('#content');
@@ -15,21 +17,22 @@ export default function ScreenController() {
 
       switch(sectionName) {
         case 'today':
-          console.log('today');
+          todoPage(null, sectionName);
           break;
         case 'tommorow':
-          console.log('tommorow');
+          todoPage(null, sectionName);
           break;
         case 'month':
-          console.log('month');
+          todoPage(null, sectionName);
           break;
         case 'upcoming':
-          console.log('upcoming');
+          todoPage(null, sectionName);
           break;
         case 'completed':
-          console.log('completed');
+          todoPage(null, null, sectionName);
           break; 
         default:
+          todoPage(sectionName);
           break; 
       }
 
