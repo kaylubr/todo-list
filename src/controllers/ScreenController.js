@@ -7,7 +7,17 @@ export default function ScreenController() {
   const content = document.querySelector('#content');
   const addTaskDialog = document.querySelector('#addTaskDialog');
   const closeDialogBtn = document.querySelector('#addTaskDialog button:first-of-type');
-  
+  const confirmAddBtn = document.querySelector('#addTaskDialog button:last-of-type');
+  const addTaskBtn = document.querySelector('#addTaskBtn');
+      
+  // Opens modal for adding tasks
+  addTaskBtn.addEventListener('click', event => {
+    addTaskDialog.showModal();
+  });
+
+  // Close modal for adding tasks
+  closeDialogBtn.addEventListener('click', () => addTaskDialog.close());
+
   navItems.forEach(item => {
     item.addEventListener('click', event => {
       const sectionName = event.currentTarget.id;
@@ -15,9 +25,6 @@ export default function ScreenController() {
       if (!sectionName) {
         return;
       }
-
-      // Resets the content every navigation
-      content.textContent = '';
 
       switch(sectionName) {
         case 'today':
@@ -39,16 +46,6 @@ export default function ScreenController() {
           todoPage(sectionName);
           break; 
       }
-
-      const addTaskBtn = document.querySelector('#addTaskBtn');
-      
-      // Opens modal for adding tasks
-      addTaskBtn.addEventListener('click', event => {
-        addTaskDialog.showModal();
-      });
-
-      // Close modal for adding tasks
-      closeDialogBtn.addEventListener('click', () => addTaskDialog.close());
     });
   });
 }
