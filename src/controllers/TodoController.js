@@ -11,17 +11,6 @@ if (!window.localStorage.getItem('projects')) {
   );
 }
 
-export function addTodoInDefault(title, desc, dueDate, priority) {
-  const project = fetchProject('inbox');
-
-  const newTodo = new Todo(title, desc, dueDate, priority);
-  project.todos.push(newTodo);
-
-  const oldProjects = fetchAllProjects();
-  
-  window.localStorage.setItem('projects', JSON.stringify({ ...oldProjects, inbox: project }));
-}
-
 export function addProject(projectName) {
   const doesProjectExist = fetchProject(projectName);
   if (!doesProjectExist) {
@@ -33,7 +22,7 @@ export function addProject(projectName) {
   }
 }
 
-export function addTodoInProject(projectName, title, desc, dueDate, priority) {
+export function addTodo(projectName, title, desc, dueDate, priority) {
   const project = fetchProject(projectName);
   if (project) {
     const newTodo = new Todo(title, desc, dueDate, priority);

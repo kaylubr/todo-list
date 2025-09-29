@@ -1,3 +1,4 @@
+import { addTodo } from "./TodoController";
 import todoPage from "../pages/todoPage";
 
 document.addEventListener('DOMContentLoaded', () => todoPage('inbox'));
@@ -17,7 +18,6 @@ export default function ScreenController() {
   const dueDate = document.querySelector('dueDate');
   const priority = document.querySelector('priority');
   
-
   // Opens modal for adding tasks
   addTaskBtn.addEventListener('click', event => {
     addTaskDialog.showModal();
@@ -25,6 +25,10 @@ export default function ScreenController() {
 
   // Close modal for adding tasks
   closeDialogBtn.addEventListener('click', () => addTaskDialog.close());
+
+  confirmAddBtn.addEventListener('click', () => {
+
+  })
 
   navItems.forEach(item => {
     item.addEventListener('click', event => {
