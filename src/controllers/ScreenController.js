@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => todoPage('inbox'));
 
 export default function ScreenController() {
   const navItems = document.querySelectorAll('.nav-item');
-  const content = document.querySelector('#content');
+  const content = document.querySelector('#taskContainer');
   const addTaskDialog = document.querySelector('#addTaskDialog');
   const closeDialogBtn = document.querySelector('#addTaskDialog button:first-of-type');
   const confirmAddBtn = document.querySelector('#addTaskDialog button:last-of-type');
@@ -25,6 +25,8 @@ export default function ScreenController() {
       if (!sectionName) {
         return;
       }
+
+      content.textContent = '';
 
       switch(sectionName) {
         case 'today':

@@ -127,6 +127,40 @@ nav img {
   text-shadow: 0 0 15px rgba(255,255,255,.5), 0 0 10px rgba(255,255,255,.5);
 }
 
+/* Todo card */
+#taskContainer {
+  width: 100%;
+}
+
+#todoCard {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border: solid 1px #b5b5b5;
+  width: 100%;
+}
+
+#todoCard > * {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#todoCard > div:first-of-type {
+  flex-grow: 1;
+}
+
+#todoCard button {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+}
+
+#todoCard button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
 /* Dialog */
 #addTaskDialog {
   position: fixed;

@@ -103,23 +103,6 @@ export function getAllTodos(projectName) {
   return project.todos
 }
 
-export function getCompletedTodos() {
-  const allProjects = JSON.parse(window.localStorage.getItem('projects'));
-  const completedTodos = [];
-
-  for (const key in allProjects) {
-    if (!Object.hasOwn(allProjects, key)) continue;
-    
-    allProjects[key].todos.forEach(todo => {
-      if (todo.completed) {
-        completedTodos.push(todo);
-      }
-    });
-  }
-
-  return completedTodos;
-}
-
 export function fetchAllProjects() {
   return JSON.parse(window.localStorage.getItem('projects'));
 }
