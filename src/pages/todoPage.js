@@ -92,6 +92,13 @@ function renderTodos(projectName, mode = null, date = null) {
 
     const editBtn = document.createElement('img');
     editBtn.src = editIcon;
+    editBtn.addEventListener('click', () => {
+      const dialog = document.querySelector('#addTaskDialog');
+      document.querySelector('#projectsDropdown').disabled = true;
+      dialog.dataset.mode = 'edit';
+      dialog.dataset.todoId = todo.id;
+      dialog.showModal();
+    });
 
     const deleteBtn = document.createElement('img');
     deleteBtn.src = deleteIcon;

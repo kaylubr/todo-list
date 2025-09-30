@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { addTodo } from "./TodoController";
+import { addTodo, editTodo } from "./TodoController";
 import todoPage from "../pages/todoPage";
 
 const navItems = document.querySelectorAll('.nav-item');
@@ -27,7 +27,7 @@ export default function ScreenController() {
   });
 
   handleAddTaskModal();
-  handleNavItems();  
+  handleNavItems();    
 }
 
 function handleNavItems() {
@@ -66,17 +66,39 @@ function handleNavItems() {
 }
 
 function handleAddTaskModal() {
-  // Opens modal for adding tasks
   addTaskBtn.addEventListener('click', () => {
     addTaskDialog.showModal();
+    projectName.disabled = false;
+    addTaskDialog.dataset.mode = 'add';
+    delete addTaskDialog.dataset.todoId;
   });
 
-  // Close modal for adding tasks
-  closeDialogBtn.addEventListener('click', () => addTaskDialog.close());
+  closeDialogBtn.addEventListener('click', () => {
+    document.querySelector('#taskDialogContainer > form').reset();
+    addTaskDialog.close()
+  });
 
   confirmAddBtn.addEventListener('click', () => {
-    const formatedDate = format(dueDate.value, 'MM/dd/yyyy');
-    addTodo(projectName.value,title.value, description.value, formatedDate, priority.value);
+    const mode = addTaskDialog.dataset.mode;
+    const projectInput = projectName.value;
+    const titleInput = title.value;
+    const descriptionInput = description.value;
+    const dueDateInput =  format(dueDate.value, 'MM/dd/yyyy');
+    const priorityInput = priority.value;
+
+    switch(mode) {
+      case 'add':
+        addTodo(projectInput, titleInput, descriptionInput, dueDateInput, priorityInput);
+        break;
+      case 'edit':
+        editTodo(projectInput, 
+                addTaskDialog.dataset.todoId, 
+                titleInput, 
+                descriptionInput, 
+                dueDateInput, 
+                priorityInput);
+        break;
+    }
 
     content.textContent = '';
 
