@@ -74,7 +74,11 @@ function renderTodos(projectName, mode = null) {
     todoCard.append(startSection, midSection, endSection);
 
     taskContainer.append(todoCard);
-  }); 
+  });
+  
+  if (taskContainer.childNodes.length < 1) {
+    taskContainer.textContent = 'Nothing here yet.';
+  }
 }
 
 export default todoPage;
