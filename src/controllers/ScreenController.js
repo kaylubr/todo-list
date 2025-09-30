@@ -81,5 +81,7 @@ function handleAddTaskModal() {
     content.textContent = '';
 
     todoPage(projectName.value);
+    document.querySelector('#taskDialogContainer > form').reset();
+    addTaskDialog.close();
   });
 }
