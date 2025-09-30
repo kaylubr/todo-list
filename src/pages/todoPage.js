@@ -1,4 +1,4 @@
-import { getAllTodos, completeTodo } from "../controllers/TodoController";
+import { getAllTodos, completeTodo, deleteTodo } from "../controllers/TodoController";
 import { isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
 import editIcon from '../icons/edit.svg';
 import deleteIcon from '../icons/delete.svg';
@@ -95,6 +95,11 @@ function renderTodos(projectName, mode = null, date = null) {
 
     const deleteBtn = document.createElement('img');
     deleteBtn.src = deleteIcon;
+    deleteBtn.addEventListener('click', () => {
+      deleteTodo(projectName, todo.id);
+      taskContainer.textContent = '';
+      todoPage(projectName);
+    })
 
     endSection.append(priority, editBtn, deleteBtn);
     todoCard.append(startSection, midSection, endSection);
