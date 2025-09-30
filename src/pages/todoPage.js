@@ -1,4 +1,5 @@
 import { getAllTodos, completeTodo } from "../controllers/TodoController";
+import { isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
 
 const taskContainer = document.querySelector('#taskContainer');
 
@@ -10,18 +11,34 @@ function todoPage(projectName, date = null, completedList = false) {
     renderTodos(projectName, 'completeFilter');
   } else if (date) {
     pageTitle.textContent = date[0].toUpperCase() + date.slice(1);
-    renderTodos(projectName);
+    renderTodos(projectName, 'dateFilter', date);
   } else {
     pageTitle.textContent = projectName[0].toUpperCase() + projectName.slice(1);
     renderTodos(projectName);
   }
 }
 
-function renderTodos(projectName, mode = null) {
+function renderTodos(projectName, mode = null, date = null) {
   let allTodos = getAllTodos('inbox');
 
   if (mode === 'completeFilter') {
     allTodos = allTodos.filter(todo => todo.completed);
+  } else if (mode === 'dateFilter') {
+    switch(date) {
+      case 'today':
+        allTodos = allTodos.filter(todo => isToday(todo.dueDate));
+        break;
+      case 'tommorow':
+        allTodos = allTodos.filter(todo => isTomorrow(todo.dueDate));
+        break;
+      case 'month':
+        allTodos = allTodos.filter(todo => isThisMonth(todo.dueDate));
+        break;
+      case 'upcoming':
+        const nextMonth = addMonths(new Date(), 1);
+        allTodos = allTodos.filter(todo => isAfter(todo.dueDate, nextMonth));
+        break;
+    }
   }
 
   allTodos.forEach(todo => {
