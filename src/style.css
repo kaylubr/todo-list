@@ -166,13 +166,11 @@ nav img {
   border-radius: 5px;
 }
 
-#todoCard button {
-  background-color: transparent;
-  border: none;
-  font-size: 1rem;
+#todoCard img {
+  width: 1.5rem;
 }
 
-#todoCard button:hover {
+#todoCard img:hover {
   cursor: pointer;
   transform: scale(1.2);
 }

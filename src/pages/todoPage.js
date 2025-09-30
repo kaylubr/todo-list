@@ -1,5 +1,7 @@
 import { getAllTodos, completeTodo } from "../controllers/TodoController";
 import { isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
+import editIcon from '../icons/edit.svg';
+import deleteIcon from '../icons/delete.svg';
 
 const taskContainer = document.querySelector('#taskContainer');
 
@@ -10,7 +12,11 @@ function todoPage(projectName, date = null, completedList = false) {
     pageTitle.textContent = 'Completed';
     renderTodos(projectName, 'completeFilter');
   } else if (date) {
-    pageTitle.textContent = date[0].toUpperCase() + date.slice(1);
+    if (date === 'month') {
+      pageTitle.textContent = 'This ' + date[0].toUpperCase() + date.slice(1);
+    } else {
+      pageTitle.textContent = date[0].toUpperCase() + date.slice(1);
+    }
     renderTodos(projectName, 'dateFilter', date);
   } else {
     pageTitle.textContent = projectName[0].toUpperCase() + projectName.slice(1);
@@ -84,12 +90,14 @@ function renderTodos(projectName, mode = null, date = null) {
       priority.style.backgroundColor = '#D61F1F';
     }
 
-    const todoOptionBtn = document.createElement('button');
-    todoOptionBtn.textContent = '⚙️';
-    endSection.append(priority, todoOptionBtn);
+    const editBtn = document.createElement('img');
+    editBtn.src = editIcon;
 
+    const deleteBtn = document.createElement('img');
+    deleteBtn.src = deleteIcon;
+
+    endSection.append(priority, editBtn, deleteBtn);
     todoCard.append(startSection, midSection, endSection);
-
     taskContainer.append(todoCard);
   });
   
