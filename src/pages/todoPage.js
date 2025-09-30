@@ -7,7 +7,7 @@ function todoPage(projectName, date = null, completedList = false) {
 
   if (completedList) {
     pageTitle.textContent = 'Completed';
-    renderTodos();
+    renderTodos('completeFilter');
   } else if (date) {
     pageTitle.textContent = date[0].toUpperCase() + date.slice(1);
     renderTodos();
@@ -19,6 +19,10 @@ function todoPage(projectName, date = null, completedList = false) {
 
 function renderTodos(mode = null) {
   let allTodos = getAllTodos('inbox');
+
+  if (mode === 'completeFilter') {
+    allTodos = allTodos.filter(todo => todo.completed);
+  }
 
   allTodos.forEach(todo => {
     const todoCard = document.createElement('div');
