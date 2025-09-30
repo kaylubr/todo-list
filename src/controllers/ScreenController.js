@@ -18,16 +18,16 @@ const priority = document.querySelector('#priority');
 
 const currentDate = format(new Date(), 'yyyy-MM-dd');
 
-// Runs when the DOM loads
-document.addEventListener('DOMContentLoaded', () => todoPage('inbox'));
-
 // Disable past days for dueDate
 dueDate.setAttribute('min', currentDate);
 
 export default function ScreenController() {
+  document.addEventListener('DOMContentLoaded', () => {
+    todoPage('inbox');
+  });
 
   handleAddTaskModal();
-  handleNavItems();
+  handleNavItems();  
 }
 
 function handleNavItems() {

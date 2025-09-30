@@ -1,4 +1,4 @@
-import { getAllTodos } from "../controllers/TodoController";
+import { getAllTodos, completeTodo } from "../controllers/TodoController";
 
 const taskContainer = document.querySelector('#taskContainer');
 
@@ -7,17 +7,17 @@ function todoPage(projectName, date = null, completedList = false) {
 
   if (completedList) {
     pageTitle.textContent = 'Completed';
-    renderTodos('completeFilter');
+    renderTodos(projectName, 'completeFilter');
   } else if (date) {
     pageTitle.textContent = date[0].toUpperCase() + date.slice(1);
-    renderTodos();
+    renderTodos(projectName);
   } else {
     pageTitle.textContent = projectName[0].toUpperCase() + projectName.slice(1);
-    renderTodos();
+    renderTodos(projectName);
   }
 }
 
-function renderTodos(mode = null) {
+function renderTodos(projectName, mode = null) {
   let allTodos = getAllTodos('inbox');
 
   if (mode === 'completeFilter') {
@@ -25,6 +25,10 @@ function renderTodos(mode = null) {
   }
 
   allTodos.forEach(todo => {
+    if (mode !== 'completeFilter' && todo.completed) {
+      return;
+    }
+
     const todoCard = document.createElement('div');
     todoCard.setAttribute('id', 'todoCard');
 
@@ -36,6 +40,12 @@ function renderTodos(mode = null) {
     // Start section
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
+    checkbox.addEventListener('click', () => {
+      completeTodo(projectName, todo.id);
+      taskContainer.textContent = '';
+      todoPage(projectName);
+    })
+
     const title = document.createElement('p');
     title.textContent = todo.title;
     startSection.append(checkbox, title);
