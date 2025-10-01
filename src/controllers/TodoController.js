@@ -92,8 +92,9 @@ export function getAllTodos(projectName) {
   return project.todos
 }
 
-export function fetchAllProjects() {
-  return JSON.parse(window.localStorage.getItem('projects'));
+export function getAllProjects() {
+  const projects = JSON.parse(window.localStorage.getItem('projects'));
+  return Object.keys(projects).map(key => projects[key]);
 }
 
 function fetchProject(projectName) {

@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { addTodo, editTodo } from "./TodoController";
+import { addTodo, editTodo, addProject, getAllProjects } from "./TodoController";
 import todoPage from "../pages/todoPage";
 
 const navItems = document.querySelectorAll('.nav-item');
@@ -119,12 +119,21 @@ function handleAddProjectModal() {
   const addProjectModal = document.querySelector('#addProjectDialog');
   const cancelBtn = document.querySelector('#addProjectDialog button:first-of-type');
   const createBtn = document.querySelector('#createProjectBtn');
+  const projectInput = document.querySelector('#project-name');
 
   addProjectBtn.addEventListener('click', () => {
+    projectInput.value = '';
+    console.log(getAllProjects());
+    
     addProjectModal.showModal();
-  })
+  });
 
   cancelBtn.addEventListener('click', () => {
     addProjectModal.close();
-  })
+  });
+
+  createBtn.addEventListener('click', () => {
+    addProject(projectInput.value);
+    addProjectModal.close();
+  });
 }
