@@ -1,6 +1,7 @@
 class Todo {
-  constructor(title, description, dueDate, priority) {
+  constructor(project, title, description, dueDate, priority) {
     this.id = crypto.randomUUID();
+    this.project = project;
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;

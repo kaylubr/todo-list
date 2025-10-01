@@ -42,7 +42,7 @@
       <button id="add-project-btn">+</button>
     </div>
     <div>
-      <ul>
+      <ul id="project-list">
         <li id="blog" class="nav-item project-item">
           <p>Blog</p>
           <button id="project-option">...</button>
@@ -99,6 +99,22 @@
         </div>
         </form>
     </div>
+  </dialog>
+  
+  <dialog id="addProjectDialog">
+    <form method="dialog">
+      <input 
+        type="text" 
+        id="project-name" 
+        placeholder="Project name"
+        autofocus
+        required
+      />
+      <div>
+        <button>Cancel</button>
+        <button id="createProjectBtn">Create</button>
+      </div>
+    </form>
   </dialog>
 </body>
 </html>

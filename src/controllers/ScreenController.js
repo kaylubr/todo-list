@@ -3,9 +3,10 @@ import { addTodo, editTodo } from "./TodoController";
 import todoPage from "../pages/todoPage";
 
 const navItems = document.querySelectorAll('.nav-item');
+const content = document.querySelector('#content');
 
 // Elements for adding tasks
-const content = document.querySelector('#taskContainer');
+const taskContainer = document.querySelector('#taskContainer');
 const addTaskDialog = document.querySelector('#addTaskDialog');
 const closeDialogBtn = document.querySelector('#addTaskDialog button:first-of-type');
 const confirmAddBtn = document.querySelector('#addTaskDialog button:last-of-type');
@@ -25,10 +26,12 @@ dueDate.setAttribute('min', currentDate);
 
 export default function ScreenController() {
   document.addEventListener('DOMContentLoaded', () => {
+    content.dataset.currentPage = 'inbox';
     todoPage('inbox');
   });
 
   handleAddTaskModal();
+  handleAddProjectModal();
   handleNavItems();    
 }
 
@@ -41,23 +44,24 @@ function handleNavItems() {
         return;
       }
 
-      content.textContent = '';
+      taskContainer.textContent = '';
+      content.dataset.currentPage = sectionName;
 
       switch(sectionName) {
         case 'today':
-          todoPage(null, sectionName);
+          todoPage(sectionName);
           break;
         case 'tommorow':
-          todoPage(null, sectionName);
+          todoPage(sectionName);
           break;
         case 'month':
-          todoPage(null, sectionName);
+          todoPage(sectionName);
           break;
         case 'upcoming':
-          todoPage(null, sectionName);
+          todoPage(sectionName);
           break;
         case 'completed':
-          todoPage(null, null, sectionName);
+          todoPage(null, sectionName);
           break; 
         default:
           todoPage(sectionName);
@@ -102,10 +106,25 @@ function handleAddTaskModal() {
         break;
     }
 
-    content.textContent = '';
+    taskContainer.textContent = '';
 
     todoPage(projectName.value);
     document.querySelector('#taskDialogContainer > form').reset();
     addTaskDialog.close();
   });
+}
+
+function handleAddProjectModal() {
+  const addProjectBtn = document.querySelector('#add-project-btn');
+  const addProjectModal = document.querySelector('#addProjectDialog');
+  const cancelBtn = document.querySelector('#addProjectDialog button:first-of-type');
+  const createBtn = document.querySelector('#createProjectBtn');
+
+  addProjectBtn.addEventListener('click', () => {
+    addProjectModal.showModal();
+  })
+
+  cancelBtn.addEventListener('click', () => {
+    addProjectModal.close();
+  })
 }

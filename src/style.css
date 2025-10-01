@@ -176,7 +176,8 @@ nav img {
 }
 
 /* Dialog */
-#addTaskDialog {
+#addTaskDialog,
+#addProjectDialog {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -189,7 +190,8 @@ nav img {
   border-radius: 10px;
 }
 
-#addTaskDialog::backdrop {
+#addTaskDialog::backdrop,
+#addProjectDialog::backdrop {
   backdrop-filter: blur(10px);
 }
 
@@ -197,7 +199,8 @@ nav img {
   background-color: #F5F5F5
 }
 
-#taskDialogContainer > form{
+#taskDialogContainer > form,
+#addProjectDialog > form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -205,6 +208,7 @@ nav img {
 }
 
 #taskDialogContainer > form > *:not(div),
+#addProjectDialog > form > *:not(div),
 #projectsDropdown {
   cursor: pointer;
   padding: 6px 12px;
@@ -227,7 +231,8 @@ nav img {
   }
 }
 
-#taskDialogContainer button {
+#taskDialogContainer button,
+#addProjectDialog button {
   font-size: 1.2rem;
   border-radius: 6px;
   border: none;
@@ -238,24 +243,30 @@ nav img {
   font-style: normal;
 }
 
-#taskDialogContainer button:hover {
+#taskDialogContainer button:hover,
+#addProjectDialog button:hover {
   cursor: pointer;
   background-color: #2c74b3d1;
 }
 
-#taskDialogContainer button:first-of-type {
+#taskDialogContainer button:first-of-type,
+#addProjectDialog button:first-of-type {
   background-color: #e1e1e1;
 }
 
-#taskDialogContainer button:first-of-type:hover {
+#taskDialogContainer button:first-of-type:hover,
+#addProjectDialog button:first-of-type:hover {
   background-color: #b5b5b5;
 }
 
-#taskDialogContainer button:last-of-type {
+#taskDialogContainer button:last-of-type,
+#addProjectDialog button:last-of-type {
   background-color: #2C74B3;
   color: whitesmoke;
 }
 
-#taskDialogContainer button:last-of-type:hover {
+#taskDialogContainer button:last-of-type:hover,
+#addProjectDialog button:last-of-type:hover {
   background-color: #2a5d8a;
 }
+

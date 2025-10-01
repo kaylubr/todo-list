@@ -1,30 +1,26 @@
 import { getAllTodos, completeTodo, deleteTodo } from "../controllers/TodoController";
 import { isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
+import { capitalize } from "../includes/capitalize";
 import editIcon from '../icons/edit.svg';
 import deleteIcon from '../icons/delete.svg';
 
+const container = document.querySelector('#content');
 const taskContainer = document.querySelector('#taskContainer');
 
-function todoPage(projectName, date = null, completedList = false) {
+function todoPage(date = null, completedList = false) {
   const pageTitle = document.querySelector('#content > h1');
+  pageTitle.textContent = capitalize(container.dataset.currentPage);
 
   if (completedList) {
-    pageTitle.textContent = 'Completed';
-    renderTodos(projectName, 'completeFilter');
+    renderTodos('completeFilter');
   } else if (date) {
-    if (date === 'month') {
-      pageTitle.textContent = 'This ' + date[0].toUpperCase() + date.slice(1);
-    } else {
-      pageTitle.textContent = date[0].toUpperCase() + date.slice(1);
-    }
-    renderTodos(projectName, 'dateFilter', date);
+    renderTodos('dateFilter', date);
   } else {
-    pageTitle.textContent = projectName[0].toUpperCase() + projectName.slice(1);
-    renderTodos(projectName);
+    renderTodos();
   }
 }
 
-function renderTodos(projectName, mode = null, date = null) {
+function renderTodos(mode = null, date = null) {
   let allTodos = getAllTodos('inbox');
 
   if (mode === 'completeFilter') {
@@ -63,10 +59,10 @@ function renderTodos(projectName, mode = null, date = null) {
     // Start section
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
-    checkbox.addEventListener('click', () => {
-      completeTodo(projectName, todo.id);
+    checkbox.addEventListener('click', () => { 
+      completeTodo(todo.project, todo.id);
       taskContainer.textContent = '';
-      todoPage(projectName);
+      todoPage(todo.project);
     })
 
     const title = document.createElement('p');
@@ -112,9 +108,9 @@ function renderTodos(projectName, mode = null, date = null) {
     const deleteBtn = document.createElement('img');
     deleteBtn.src = deleteIcon;
     deleteBtn.addEventListener('click', () => {
-      deleteTodo(projectName, todo.id);
+      deleteTodo(todo.project, todo.id);
       taskContainer.textContent = '';
-      todoPage(projectName);
+      todoPage(todo.project);
     })
 
     if (mode !== 'completeFilter') {

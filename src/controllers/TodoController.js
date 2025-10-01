@@ -25,7 +25,7 @@ export function addProject(projectName) {
 export function addTodo(projectName, title, desc, dueDate, priority) {
   const project = fetchProject(projectName);
   if (project) {
-    const newTodo = new Todo(title, desc, dueDate, priority);
+    const newTodo = new Todo(projectName, title, desc, dueDate, priority);
     project.todos.push(newTodo);
 
     const oldProjects = fetchAllProjects();
