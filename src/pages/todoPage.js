@@ -95,6 +95,20 @@ function renderTodos(projectName, mode = null, date = null) {
     editBtn.addEventListener('click', () => {
       const dialog = document.querySelector('#addTaskDialog');
       document.querySelector('#projectsDropdown').disabled = true;
+
+      const title = document.querySelector('#title');
+      const description = document.querySelector('#description');
+      const dueDate = document.querySelector('#dueDate');
+      const priority = document.querySelector('#priority');
+
+      console.log(todo.description);
+      
+
+      title.value = todo.title;
+      description.value = todo.description;
+      dueDate.value = todo.dueDate;
+      priority.value = todo.priority;
+
       dialog.dataset.mode = 'edit';
       dialog.dataset.todoId = todo.id;
       dialog.showModal();

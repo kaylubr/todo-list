@@ -3,6 +3,8 @@ import { addTodo, editTodo } from "./TodoController";
 import todoPage from "../pages/todoPage";
 
 const navItems = document.querySelectorAll('.nav-item');
+
+// Elements for adding tasks
 const content = document.querySelector('#taskContainer');
 const addTaskDialog = document.querySelector('#addTaskDialog');
 const closeDialogBtn = document.querySelector('#addTaskDialog button:first-of-type');
