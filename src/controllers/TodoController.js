@@ -93,8 +93,12 @@ export function getAllTodos(projectName) {
 }
 
 export function getAllProjects() {
-  const projects = JSON.parse(window.localStorage.getItem('projects'));
+  const projects = fetchAllProjects();
   return Object.keys(projects).map(key => projects[key]);
+}
+
+function fetchAllProjects() {
+  return JSON.parse(window.localStorage.getItem('projects'));
 }
 
 function fetchProject(projectName) {

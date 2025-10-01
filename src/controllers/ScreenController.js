@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { addTodo, editTodo, addProject, getAllProjects } from "./TodoController";
+import projectList from "../pages/projectList";
 import todoPage from "../pages/todoPage";
 
 const navItems = document.querySelectorAll('.nav-item');
@@ -26,6 +27,7 @@ dueDate.setAttribute('min', currentDate);
 
 export default function ScreenController() {
   document.addEventListener('DOMContentLoaded', () => {
+    projectList();
     content.dataset.currentPage = 'inbox';
     todoPage('inbox');
   });
@@ -124,7 +126,6 @@ function handleAddProjectModal() {
   addProjectBtn.addEventListener('click', () => {
     projectInput.value = '';
     console.log(getAllProjects());
-    
     addProjectModal.showModal();
   });
 
@@ -134,6 +135,7 @@ function handleAddProjectModal() {
 
   createBtn.addEventListener('click', () => {
     addProject(projectInput.value);
+    projectList();
     addProjectModal.close();
   });
 }
