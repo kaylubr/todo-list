@@ -1,7 +1,11 @@
 import { getAllProjects } from "../controllers/TodoController";
 import { capitalize } from "../includes/capitalize";
+import todoPage from "./todoPage";
 
 export default function projectList() {
+  const content = document.querySelector('#content');
+  const taskContainer = document.querySelector('#taskContainer');
+
   const projectList = document.querySelector('#project-list');
   const projects = getAllProjects().filter(project => project.name !== 'inbox');
   const projectListDropdown = document.querySelector('#projectsDropdown');
@@ -18,6 +22,14 @@ export default function projectList() {
     const li = document.createElement('li');
     li.setAttribute('id', project.name);
     li.classList.add('nav-item', 'project-item');
+    li.addEventListener('click', () => {
+      content.dataset.currentProject = project.name;
+      content.dataset.currentPage = project.name;
+
+      taskContainer.textContent = '';
+
+      todoPage();
+    });
 
     const p = document.createElement('p');
     p.textContent = capitalize(project.name);

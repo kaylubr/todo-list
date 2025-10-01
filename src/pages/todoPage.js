@@ -21,7 +21,7 @@ function todoPage(date = null, completedList = false) {
 }
 
 function renderTodos(mode = null, date = null) {
-  let allTodos = getAllTodos('inbox');
+  let allTodos = getAllTodos(container.dataset.currentProject);
 
   if (mode === 'completeFilter') {
     allTodos = allTodos.filter(todo => todo.completed);

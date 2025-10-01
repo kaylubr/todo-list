@@ -3,7 +3,6 @@ import { addTodo, editTodo, addProject, getAllProjects } from "./TodoController"
 import projectList from "../pages/projectList";
 import todoPage from "../pages/todoPage";
 
-const navItems = document.querySelectorAll('.nav-item');
 const content = document.querySelector('#content');
 
 // Elements for adding tasks
@@ -25,28 +24,27 @@ const currentDate = format(new Date(), 'yyyy-MM-dd');
 // Disable past days for dueDate
 dueDate.setAttribute('min', currentDate);
 
-export default function ScreenController() {
-  document.addEventListener('DOMContentLoaded', () => {
-    projectList();
-    content.dataset.currentPage = 'inbox';
-    todoPage('inbox');
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  projectList();
+  content.dataset.currentProject = 'inbox'
+  content.dataset.currentPage = 'inbox';
+  todoPage('inbox');z
+});
 
+export default function ScreenController() {
   handleAddTaskModal();
   handleAddProjectModal();
   handleNavItems();    
 }
 
 function handleNavItems() {
+  const navItems = document.querySelectorAll('.nav-item');
   navItems.forEach(item => {
     item.addEventListener('click', event => {
       const sectionName = event.currentTarget.id;
-      
-      if (!sectionName) {
-        return;
-      }
 
       taskContainer.textContent = '';
+      content.dataset.currentProject = 'inbox';
       content.dataset.currentPage = sectionName;
 
       switch(sectionName) {
