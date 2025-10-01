@@ -71,12 +71,10 @@ function renderTodos(projectName, mode = null, date = null) {
 
     const title = document.createElement('p');
     title.textContent = todo.title;
-    startSection.append(checkbox, title);
 
     // Mid section
     const dueDate = document.createElement('p');
     dueDate.textContent = todo.dueDate;
-    midSection.append(dueDate);
 
     // End section
     const priority = document.createElement('div');
@@ -101,9 +99,6 @@ function renderTodos(projectName, mode = null, date = null) {
       const dueDate = document.querySelector('#dueDate');
       const priority = document.querySelector('#priority');
 
-      console.log(todo.description);
-      
-
       title.value = todo.title;
       description.value = todo.description;
       dueDate.value = todo.dueDate;
@@ -122,7 +117,16 @@ function renderTodos(projectName, mode = null, date = null) {
       todoPage(projectName);
     })
 
-    endSection.append(priority, editBtn, deleteBtn);
+    if (mode !== 'completeFilter') {
+      startSection.append(checkbox, title);
+      midSection.append(dueDate);
+      endSection.append(priority, editBtn, deleteBtn);
+    } else {
+      startSection.append(title);
+      midSection.append(dueDate);
+      endSection.append(priority);
+    }
+
     todoCard.append(startSection, midSection, endSection);
     taskContainer.append(todoCard);
   });
