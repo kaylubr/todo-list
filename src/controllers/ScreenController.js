@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   projectList();
   content.dataset.currentProject = 'inbox'
   content.dataset.currentPage = 'inbox';
-  todoPage('inbox');z
+  todoPage('inbox');
 });
 
 export default function ScreenController() {

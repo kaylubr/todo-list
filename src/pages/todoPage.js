@@ -90,11 +90,13 @@ function renderTodos(mode = null, date = null) {
       const dialog = document.querySelector('#addTaskDialog');
       document.querySelector('#projectsDropdown').disabled = true;
 
+      const projectInput = document.querySelector('#projectsDropdown');
       const title = document.querySelector('#title');
       const description = document.querySelector('#description');
       const dueDate = document.querySelector('#dueDate');
       const priority = document.querySelector('#priority');
 
+      projectInput.value = todo.project;
       title.value = todo.title;
       description.value = todo.description;
       dueDate.value = todo.dueDate;
