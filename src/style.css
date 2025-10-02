@@ -171,7 +171,8 @@ nav img {
 
 /* Dialog */
 #addTaskDialog,
-#addProjectDialog {
+#addProjectDialog,
+#warningDialog {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -185,7 +186,8 @@ nav img {
 }
 
 #addTaskDialog::backdrop,
-#addProjectDialog::backdrop {
+#addProjectDialog::backdrop,
+#warningDialog::backdrop {
   backdrop-filter: blur(10px);
 }
 
