@@ -1,6 +1,7 @@
 import { getAllProjects } from "../controllers/TodoController";
 import { capitalize } from "../includes/capitalize";
 import todoPage from "./todoPage";
+import deleteIcon from '../icons/deleteProject.svg';
 
 export default function projectList() {
   const content = document.querySelector('#content');
@@ -34,11 +35,15 @@ export default function projectList() {
     const p = document.createElement('p');
     p.textContent = capitalize(project.name);
 
-    const button = document.createElement('button');
-    button.setAttribute('id', 'project-option');
-    button.textContent = '...'
+    const img = document.createElement('img');
+    img.src = deleteIcon;
+    img.setAttribute('id', 'deleteProjectBtn');
+    img.addEventListener('click', () => {
+      const dialog = document.querySelector('#warningDialog');
+      dialog.showModal();
+    })
 
-    li.append(p, button);
+    li.append(p, img);
     projectList.append(li);
 
     // Project list for adding/editing todo's dialog

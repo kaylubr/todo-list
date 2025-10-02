@@ -108,7 +108,9 @@ function handleAddTaskModal() {
 
     taskContainer.textContent = '';
 
-    todoPage(projectName.value);
+    console.log(projectInput);
+
+    todoPage(projectInput);
     document.querySelector('#taskDialogContainer > form').reset();
     addTaskDialog.close();
   });

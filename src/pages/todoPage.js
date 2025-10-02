@@ -1,5 +1,5 @@
 import { getAllTodos, completeTodo, deleteTodo } from "../controllers/TodoController";
-import { isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
+import { isBefore, isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
 import { capitalize } from "../includes/capitalize";
 import editIcon from '../icons/edit.svg';
 import deleteIcon from '../icons/delete.svg';
@@ -45,6 +45,11 @@ function renderTodos(mode = null, date = null) {
 
   allTodos.forEach(todo => {
     if (mode !== 'completeFilter' && todo.completed) {
+      return;
+    }
+
+    if (isBefore(todo.dueDate, new Date())) {
+      deleteTodo(todo.project, todo.id);
       return;
     }
 

@@ -57,7 +57,7 @@
       <form method="dialog">
         <div>
           <label>
-            Project:&nbsp;&nbsp;
+            <b>PROJECT:</b>&nbsp;&nbsp;
             <select id="projectsDropdown">
               <option value="inbox" selected>Default</option>
             </select>
@@ -111,5 +111,18 @@
       </div>
     </form>
   </dialog>
+
+  <dialog id="warningDialog">
+    <div>
+      <img src="./icons/alert.svg" alt="alert">
+      <h3>Are you sure?</h3>
+      <div>
+        <p>This action cannot be undone. All values</p>
+        <p>associated with this field will be lost.</p>
+      </div>
+      <button id="warningDeleteBtn">Delete</button>
+      <button>Cancel</button>
+    </div>
+    </dialog>
 </body>
 </html>
