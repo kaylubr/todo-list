@@ -1,5 +1,5 @@
 import { addProject } from "../controllers/TodoController";
-import projectList from "../pages/projectList";
+import ProjectList from "./ProjectList";
 
 const addProjectModal = document.querySelector('#addProjectDialog');
 const projectInput = document.querySelector('#project-name');
@@ -16,7 +16,7 @@ class ProjectModal {
 
   static addProject() {
     addProject(projectInput.value);
-    projectList();
+    ProjectList.render();
     addProjectModal.close();
   }
 }

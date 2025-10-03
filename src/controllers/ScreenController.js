@@ -1,4 +1,4 @@
-import projectList from "../pages/projectList";
+import ProjectList from "../components/ProjectList";
 import TodoPage from "../pages/TodoPage";
 import ProjectModal from "../components/ProjectModal";
 import TodoModal from "../components/TodoModal";
@@ -47,8 +47,8 @@ function setupIntialRender() {
 
   // Disable past days for dueDate
   dueDate.setAttribute('min', new Date());
-  projectList();
   content.dataset.currentProject = 'inbox'
   content.dataset.currentPage = 'inbox';
+  ProjectList.render();
   TodoPage.renderPage('inbox');
 }

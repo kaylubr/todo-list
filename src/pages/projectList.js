@@ -14,7 +14,7 @@ export default function projectList() {
   // Resets project tab on nav
   projectList.textContent = ''
 
-  // Resets dropdown
+  // Resets Modal dropdown
   const childrenToRemove = Array.from(projectListDropdown.children).slice(1);
   childrenToRemove.forEach(child => child.remove());;
 
