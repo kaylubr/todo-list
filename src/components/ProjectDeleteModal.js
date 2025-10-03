@@ -1,5 +1,6 @@
 import { deleteProject } from "../controllers/TodoController";
 import ProjectList from "./ProjectList";
+import TodoPage from "../pages/TodoPage";
 
 const dialog = document.querySelector('#warningDialog');
 
@@ -19,9 +20,13 @@ class ProjectDeleteModal {
   }
 
   static #handleDelete(projectName) {
+    const container = document.querySelector('#content');
+    container.dataset.currentProject = 'inbox';
+    container.dataset.currentPage = 'inbox';
     deleteProject(projectName);
-    dialog.close();
     ProjectList.render();
+    TodoPage.renderPage();
+    dialog.close();
   }
 }
 

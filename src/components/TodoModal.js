@@ -2,6 +2,7 @@ import { addTodo, editTodo } from "../controllers/TodoController";
 import TodoPage from "../pages/TodoPage";
 import TodoList from "./TodoList";
 
+const content = document.querySelector('#content');
 const addTaskDialog = document.querySelector('#addTaskDialog');
 const modalForm = document.querySelector('#taskDialogContainer > form');
 
@@ -17,10 +18,12 @@ class TodoModal {
   }
 
   static showModal() {
-    addTaskDialog.showModal();
+    const currentProject = content.dataset.currentProject;
     projectName.disabled = false;
     addTaskDialog.dataset.mode = 'add';
+    projectName.value = currentProject;
     delete addTaskDialog.dataset.todoId;
+    addTaskDialog.showModal();
   }
 
   static addTodo() {
