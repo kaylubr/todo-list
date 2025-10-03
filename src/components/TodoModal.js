@@ -1,22 +1,17 @@
 import { addTodo, editTodo } from "../controllers/TodoController";
 import TodoPage from "../pages/TodoPage";
-
-const taskContainer = document.querySelector('#taskContainer');
+import TodoList from "./TodoList";
 
 const addTaskDialog = document.querySelector('#addTaskDialog');
 const modalForm = document.querySelector('#taskDialogContainer > form');
 
 // Dialog inputs for adding todo's
 const projectName = document.querySelector('#projectsDropdown');
-const title = document.querySelector('#title').value;
-const desc = document.querySelector('#description').value;
-const dueDate = document.querySelector('#dueDate').value;
-const priority = document.querySelector('#priority').value;
 
 class TodoModal {
-  #resetModal() {
-    taskContainer.textContent = '';
-    TodoPage.renderPage(projectInput);
+  static #resetModal() {
+    TodoList.resetTodos();
+    TodoPage.renderPage(projectName.value);
     document.querySelector('#taskDialogContainer > form').reset();
     addTaskDialog.close();
   }
@@ -29,10 +24,13 @@ class TodoModal {
   }
 
   static addTodo() {
-    console.log('runs');
+    const projectInput = projectName.value;
+    const title = document.querySelector('#title').value;
+    const desc = document.querySelector('#description').value;
+    const dueDate = document.querySelector('#dueDate').value;
+    const priority = document.querySelector('#priority').value;
     
     const mode = addTaskDialog.dataset.mode;
-    const projectInput = projectName.value;
 
     switch(mode) {
       case 'add':
@@ -44,7 +42,7 @@ class TodoModal {
         break;
     }
 
-    resetModal();
+    TodoModal.#resetModal();
   }
 
   static closeModal() {

@@ -1,12 +1,18 @@
 import { getAllTodos, completeTodo, deleteTodo } from "../controllers/TodoController";
-import { isBefore, isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
+import { format, isBefore, isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
 import editIcon from '../icons/edit.svg';
 import deleteIcon from '../icons/delete.svg';
+
+import TodoPage from "../pages/TodoPage";
 
 const container = document.querySelector('#content');
 const taskContainer = document.querySelector('#taskContainer');
 
 class TodoList {
+  static resetTodos() {
+    taskContainer.textContent = '';
+  }
+
   static renderTodos(pageName) {
     const DATE_FILTERS = ['today', 'tommorow', 'month', 'upcoming'];
     let allTodos = getAllTodos(container.dataset.currentProject);
@@ -27,11 +33,11 @@ class TodoList {
           allTodos = allTodos.filter(todo => isAfter(todo.dueDate, nextMonth));
           break;
       }
-    } else if (pageName === 'complete') {
+    } else if (pageName === 'completed') {
       allTodos = allTodos.filter(todo => todo.completed);
     }
 
-    allTodos.forEach(todo => {
+    allTodos.forEach(todo => {   
       if (pageName !== 'complete' && todo.completed) {
         return;
       }
@@ -54,8 +60,8 @@ class TodoList {
       checkbox.setAttribute('type', 'checkbox');
       checkbox.addEventListener('click', () => { 
         completeTodo(todo.project, todo.id);
-        taskContainer.textContent = '';
-        todoPage(todo.project);
+        this.resetTodos();
+        TodoPage.renderPage(todo.project);
       })
 
       const title = document.createElement('p');
@@ -63,7 +69,8 @@ class TodoList {
 
       // Mid section
       const dueDate = document.createElement('p');
-      dueDate.textContent = todo.dueDate;
+  
+      dueDate.textContent = format(todo.dueDate, 'MM/dd/yyyy');
 
       // End section
       const priority = document.createElement('div');
@@ -104,8 +111,8 @@ class TodoList {
       deleteBtn.src = deleteIcon;
       deleteBtn.addEventListener('click', () => {
         deleteTodo(todo.project, todo.id);
-        taskContainer.textContent = '';
-        todoPage(todo.project);
+        this.resetTodos();
+        TodoPage.renderPage(todo.project);
       })
 
       if (pageName !== 'complete') {
