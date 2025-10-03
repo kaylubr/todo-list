@@ -25,67 +25,34 @@ const currentDate = format(new Date(), 'yyyy-MM-dd');
 // Disable past days for dueDate
 dueDate.setAttribute('min', currentDate);
 
-document.addEventListener('DOMContentLoaded', () => {
-  projectList();
-  content.dataset.currentProject = 'inbox'
-  content.dataset.currentPage = 'inbox';
-  TodoPage.renderPage('inbox');
-});
+document.addEventListener('DOMContentLoaded', () => setupIntialRender());
 
 export default function ScreenController() {
+  // Nav items 
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  navItems.forEach(item => {
+    item.addEventListener('click', event => {
+      const pageName = event.currentTarget.id;
+
+      taskContainer.textContent = '';
+      content.dataset.currentProject = 'inbox';
+      content.dataset.currentPage = pageName;
+
+      TodoPage.renderPage(pageName);
+    });
+  });
+
   // Add Project Dialog
   const addProjectBtn = document.querySelector('#add-project-btn');
   const cancelAddProjectBtn = document.querySelector('#addProjectDialog button:first-of-type');
   const createProjectBtn = document.querySelector('#createProjectBtn');
 
-  addProjectBtn.addEventListener('click', () => {
-    ProjectModal.showModal();
-  });
-
-  cancelAddProjectBtn.addEventListener('click', () => {
-    ProjectModal.cancelModal();
-  });
-
-  createProjectBtn.addEventListener('click', () => {
-    ProjectModal.addProject();
-  });
+  addProjectBtn.addEventListener('click', () => ProjectModal.showModal());
+  cancelAddProjectBtn.addEventListener('click', () => ProjectModal.cancelModal());
+  createProjectBtn.addEventListener('click', () => ProjectModal.addProject());
 
   handleAddTaskModal();
-  handleNavItems();
-}
-
-function handleNavItems() {
-  const navItems = document.querySelectorAll('.nav-item');
-  navItems.forEach(item => {
-    item.addEventListener('click', event => {
-      const sectionName = event.currentTarget.id;
-
-      taskContainer.textContent = '';
-      content.dataset.currentProject = 'inbox';
-      content.dataset.currentPage = sectionName;
-
-      switch(sectionName) {
-        case 'today':
-          TodoPage.renderPage(sectionName);
-          break;
-        case 'tommorow':
-          TodoPage.renderPage(sectionName);
-          break;
-        case 'month':
-          TodoPage.renderPage(sectionName);
-          break;
-        case 'upcoming':
-          TodoPage.renderPage(sectionName);
-          break;
-        case 'completed':
-          TodoPage.renderPage(null, sectionName);
-          break; 
-        default:
-          TodoPage.renderPage(sectionName);
-          break; 
-      }
-    });
-  });
 }
 
 function handleAddTaskModal() {
@@ -133,3 +100,9 @@ function handleAddTaskModal() {
   });
 }
 
+function setupIntialRender() {
+  projectList();
+  content.dataset.currentProject = 'inbox'
+  content.dataset.currentPage = 'inbox';
+  TodoPage.renderPage('inbox');
+}

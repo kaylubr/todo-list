@@ -7,13 +7,12 @@ const container = document.querySelector('#content');
 const taskContainer = document.querySelector('#taskContainer');
 
 class TodoList {
-  static renderTodos(mode = null, date = null) {
+  static renderTodos(pageName) {
+    const DATE_FILTERS = ['today', 'tommorow', 'month', 'upcoming'];
     let allTodos = getAllTodos(container.dataset.currentProject);
 
-    if (mode === 'completeFilter') {
-      allTodos = allTodos.filter(todo => todo.completed);
-    } else if (mode === 'dateFilter') {
-      switch(date) {
+    if (DATE_FILTERS.includes(pageName)) {
+      switch(pageName) {
         case 'today':
           allTodos = allTodos.filter(todo => isToday(todo.dueDate));
           break;
@@ -28,10 +27,12 @@ class TodoList {
           allTodos = allTodos.filter(todo => isAfter(todo.dueDate, nextMonth));
           break;
       }
+    } else if (pageName === 'complete') {
+      allTodos = allTodos.filter(todo => todo.completed);
     }
 
     allTodos.forEach(todo => {
-      if (mode !== 'completeFilter' && todo.completed) {
+      if (pageName !== 'complete' && todo.completed) {
         return;
       }
 
@@ -107,7 +108,7 @@ class TodoList {
         todoPage(todo.project);
       })
 
-      if (mode !== 'completeFilter') {
+      if (pageName !== 'complete') {
         startSection.append(checkbox, title);
         midSection.append(dueDate);
         endSection.append(priority, editBtn, deleteBtn);

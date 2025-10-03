@@ -2,18 +2,14 @@ import TodoList from "../components/TodoList";
 import { capitalize } from "../includes/capitalize";
 
 class TodoPage {
-  static renderPage(date = null, completedList = false) {
+  static renderPage() {
     const container = document.querySelector('#content');
-    const pageTitle = document.querySelector('#content > h1');
-    pageTitle.textContent = capitalize(container.dataset.currentPage);
+    const pageHeader = document.querySelector('#content > h1');
+    const pageName = container.dataset.currentPage;
 
-    if (completedList) {
-      TodoList.renderTodos('completeFilter');
-    } else if (date) {
-      TodoList.renderTodos('dateFilter', date);
-    } else {
-      TodoList.renderTodos();
-    }
+    pageHeader.textContent = capitalize(pageName);
+
+    TodoList.renderTodos(pageName);
   }
 }
 
