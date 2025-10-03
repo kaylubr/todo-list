@@ -37,12 +37,10 @@ class TodoList {
     }
 
     allTodos.forEach(todo => {   
-      console.log(todo);
-      
       if (pageName !== 'completed' && todo.completed) {
         return;
       }
-      
+
       if (isBefore(todo.dueDate, format(new Date(), 'MM/dd/yyyy'))) {
         console.log('runs');
         
