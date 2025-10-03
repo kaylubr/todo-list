@@ -16,7 +16,7 @@ class TodoList {
   static renderTodos(pageName) {
     const DATE_FILTERS = ['today', 'tommorow', 'month', 'upcoming'];
     let allTodos = getAllTodos(container.dataset.currentProject);
-
+        
     if (DATE_FILTERS.includes(pageName)) {
       switch(pageName) {
         case 'today':

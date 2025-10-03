@@ -9,6 +9,7 @@ class TodoPage {
 
     pageHeader.textContent = capitalize(pageName);
 
+    TodoList.resetTodos();
     TodoList.renderTodos(pageName);
   }
 }
