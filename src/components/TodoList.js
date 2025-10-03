@@ -116,14 +116,14 @@ class TodoList {
         TodoPage.renderPage(todo.project);
       })
 
-      if (pageName !== 'complete') {
+      if (pageName !== 'completed') {
         startSection.append(checkbox, title);
         midSection.append(dueDate);
         endSection.append(priority, editBtn, deleteBtn);
       } else {
         startSection.append(title);
         midSection.append(dueDate);
-        endSection.append(priority);
+        endSection.append(priority, deleteBtn);
       }
 
       todoCard.append(startSection, midSection, endSection);
