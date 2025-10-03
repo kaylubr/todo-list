@@ -38,7 +38,7 @@ class ProjectList {
       const img = document.createElement('img');
       img.src = deleteIcon;
       img.setAttribute('id', 'deleteProjectBtn');
-      img.addEventListener('click', () => ProjectDeleteModal.showModal());
+      img.addEventListener('click', () => ProjectDeleteModal.showModal(project.name));
 
       li.append(p, img);
       projectNavList.append(li);

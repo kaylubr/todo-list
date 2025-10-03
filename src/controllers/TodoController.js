@@ -22,6 +22,12 @@ export function addProject(projectName) {
   }
 }
 
+export function deleteProject(projectName) {
+  const allProjects = fetchAllProjects()
+  delete allProjects[projectName];
+  window.localStorage.setItem('projects', JSON.stringify(allProjects));
+}
+
 export function addTodo(projectName, title, desc, dueDate, priority) {
   const project = fetchProject(projectName);
   if (project) {

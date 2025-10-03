@@ -1,24 +1,27 @@
+import { deleteProject } from "../controllers/TodoController";
+import ProjectList from "./ProjectList";
+
+const dialog = document.querySelector('#warningDialog');
+
 class ProjectDeleteModal {
-  static showModal() {
-    const dialog = document.querySelector('#warningDialog');
+  static showModal(projectName) {
     const deleteBtn = document.querySelector('#warningDeleteBtn');
     const cancelBtn = document.querySelector('#warningDeleteBtn + button');
   
     dialog.showModal();
+    deleteBtn.addEventListener('click', 
+      () => ProjectDeleteModal.#handleDelete(projectName), 
+      { once: true });
+    
+    cancelBtn.addEventListener('click', 
+      () => dialog.close(), 
+      { once: true });
+  }
 
-    let deleteBtnHasHandler = deleteBtn.dataset.hasHandler;
-    let cancelBtnHasHandler = cancelBtn.dataset.hasHandler;
-
-    if (!(deleteBtnHasHandler && cancelBtnHasHandler)) {
-      deleteBtn.dataset.hasHandler = true;
-      cancelBtn.dataset.hasHandler = true;
-
-      deleteBtn.addEventListener('click', () => {
-        
-      });
-      
-      cancelBtn.addEventListener('click', () => dialog.close());
-    }
+  static #handleDelete(projectName) {
+    deleteProject(projectName);
+    dialog.close();
+    ProjectList.render();
   }
 }
 
