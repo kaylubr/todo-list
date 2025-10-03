@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { addTodo, editTodo, addProject, getAllProjects } from "./TodoController";
 import projectList from "../pages/projectList";
 import TodoPage from "../pages/TodoPage";
+import ProjectModal from "../components/ProjectModal";
 
 const content = document.querySelector('#content');
 
@@ -32,9 +33,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 export default function ScreenController() {
+  // Add Project Dialog
+  const addProjectBtn = document.querySelector('#add-project-btn');
+  const cancelAddProjectBtn = document.querySelector('#addProjectDialog button:first-of-type');
+  const createProjectBtn = document.querySelector('#createProjectBtn');
+
+  addProjectBtn.addEventListener('click', () => {
+    ProjectModal.showModal();
+  });
+
+  cancelAddProjectBtn.addEventListener('click', () => {
+    ProjectModal.cancelModal();
+  });
+
+  createProjectBtn.addEventListener('click', () => {
+    ProjectModal.addProject();
+  });
+
   handleAddTaskModal();
-  handleAddProjectModal();
-  handleNavItems();    
+  handleNavItems();
 }
 
 function handleNavItems() {
@@ -116,26 +133,3 @@ function handleAddTaskModal() {
   });
 }
 
-function handleAddProjectModal() {
-  const addProjectBtn = document.querySelector('#add-project-btn');
-  const addProjectModal = document.querySelector('#addProjectDialog');
-  const cancelBtn = document.querySelector('#addProjectDialog button:first-of-type');
-  const createBtn = document.querySelector('#createProjectBtn');
-  const projectInput = document.querySelector('#project-name');
-
-  addProjectBtn.addEventListener('click', () => {
-    projectInput.value = '';
-    console.log(getAllProjects());
-    addProjectModal.showModal();
-  });
-
-  cancelBtn.addEventListener('click', () => {
-    addProjectModal.close();
-  });
-
-  createBtn.addEventListener('click', () => {
-    addProject(projectInput.value);
-    projectList();
-    addProjectModal.close();
-  });
-}
