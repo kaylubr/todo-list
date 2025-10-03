@@ -1,9 +1,8 @@
 import { getAllTodos, completeTodo, deleteTodo } from "../controllers/TodoController";
 import { format, isBefore, isToday, isTomorrow, isThisMonth, isAfter, addMonths } from "date-fns";
+import TodoPage from "../pages/TodoPage";
 import editIcon from '../icons/edit.svg';
 import deleteIcon from '../icons/delete.svg';
-
-import TodoPage from "../pages/TodoPage";
 
 const container = document.querySelector('#content');
 const taskContainer = document.querySelector('#taskContainer');
@@ -36,6 +35,9 @@ class TodoList {
     } else if (pageName === 'completed') {
       allTodos = allTodos.filter(todo => todo.completed);
     }
+
+    console.log(allTodos);
+    
 
     allTodos.forEach(todo => {   
       if (pageName !== 'complete' && todo.completed) {
