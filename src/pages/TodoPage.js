@@ -2,6 +2,8 @@ import TodoList from "../components/TodoList";
 import { capitalize } from "../includes/capitalize";
 
 class TodoPage {
+  static DATE_FILTERS = ['today', 'tommorow', 'month', 'upcoming'];
+
   static renderPage() {
     const container = document.querySelector('#content');
     const addTaskBtn = document.querySelector('#addTaskBtn');
@@ -10,7 +12,7 @@ class TodoPage {
 
     pageHeader.textContent = capitalize(pageName);
 
-    if (pageName === 'completed') {
+    if (pageName === 'completed' || this.DATE_FILTERS.includes(pageName)) {
       addTaskBtn.style.display = 'none';
     } else {
       addTaskBtn.style.display = 'block';

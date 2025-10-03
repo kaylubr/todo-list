@@ -37,10 +37,11 @@ class TodoList {
     }
 
     console.log(allTodos);
-    
 
+    this.resetTodos();
+    
     allTodos.forEach(todo => {   
-      if (pageName !== 'complete' && todo.completed) {
+      if (pageName !== 'completed' && todo.completed) {
         return;
       }
 

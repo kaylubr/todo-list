@@ -31,6 +31,10 @@ export function deleteProject(projectName) {
 export function addTodo(projectName, title, desc, dueDate, priority) {
   const project = fetchProject(projectName);
   if (project) {
+    if (!title || !desc || !dueDate || !priority) {
+      throw new Error("Invalid inputs.");
+    }
+
     const newTodo = new Todo(projectName, title, desc, dueDate, priority);
     project.todos.push(newTodo);
 

@@ -11,9 +11,8 @@ const projectName = document.querySelector('#projectsDropdown');
 
 class TodoModal {
   static #resetModal() {
-    TodoList.resetTodos();
     TodoPage.renderPage(projectName.value);
-    document.querySelector('#taskDialogContainer > form').reset();
+    modalForm.reset();
     addTaskDialog.close();
   }
 
@@ -35,17 +34,21 @@ class TodoModal {
     
     const mode = addTaskDialog.dataset.mode;
 
-    switch(mode) {
-      case 'add':
-        addTodo(projectInput, title, desc, dueDate, priority);
-        break;
-      case 'edit':
-        const id = addTaskDialog.dataset.todoId;
-        editTodo(projectInput, id, title, desc, dueDate, priority);
-        break;
+    try {
+      switch(mode) {
+        case 'add':
+          addTodo(projectInput, title, desc, dueDate, priority);
+          break;
+        case 'edit':
+          const id = addTaskDialog.dataset.todoId;
+          editTodo(projectInput, id, title, desc, dueDate, priority);
+          break;
+      }
+      content.dataset.currentProject = projectInput;
+      TodoModal.#resetModal();
+    } catch {
+      return;
     }
-
-    TodoModal.#resetModal();
   }
 
   static closeModal() {
