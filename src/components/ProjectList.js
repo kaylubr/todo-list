@@ -2,6 +2,7 @@ import { getAllProjects } from "../controllers/TodoController";
 import { capitalize } from "../includes/capitalize";
 import TodoList from "./TodoList";
 import TodoPage from "../pages/TodoPage";
+import ProjectDeleteModal from "./ProjectDeleteModal";
 import deleteIcon from '../icons/deleteProject.svg';
 
 const content = document.querySelector('#content');
@@ -37,10 +38,7 @@ class ProjectList {
       const img = document.createElement('img');
       img.src = deleteIcon;
       img.setAttribute('id', 'deleteProjectBtn');
-      img.addEventListener('click', () => {
-        const dialog = document.querySelector('#warningDialog');
-        dialog.showModal();
-      })
+      img.addEventListener('click', () => ProjectDeleteModal.showModal());
 
       li.append(p, img);
       projectNavList.append(li);
