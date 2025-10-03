@@ -36,16 +36,16 @@ class TodoList {
       allTodos = allTodos.filter(todo => todo.completed);
     }
 
-    console.log(allTodos);
-
-    this.resetTodos();
-    
     allTodos.forEach(todo => {   
+      console.log(todo);
+      
       if (pageName !== 'completed' && todo.completed) {
         return;
       }
-
-      if (isBefore(todo.dueDate, new Date())) {
+      
+      if (isBefore(todo.dueDate, format(new Date(), 'MM/dd/yyyy'))) {
+        console.log('runs');
+        
         deleteTodo(todo.project, todo.id);
         return;
       }
