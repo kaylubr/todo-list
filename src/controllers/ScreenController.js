@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { addTodo, editTodo, addProject, getAllProjects } from "./TodoController";
 import projectList from "../pages/projectList";
-import todoPage from "../pages/todoPage";
+import TodoPage from "../pages/TodoPage";
 
 const content = document.querySelector('#content');
 
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   projectList();
   content.dataset.currentProject = 'inbox'
   content.dataset.currentPage = 'inbox';
-  todoPage('inbox');
+  TodoPage.renderPage('inbox');
 });
 
 export default function ScreenController() {
@@ -49,22 +49,22 @@ function handleNavItems() {
 
       switch(sectionName) {
         case 'today':
-          todoPage(sectionName);
+          TodoPage.renderPage(sectionName);
           break;
         case 'tommorow':
-          todoPage(sectionName);
+          TodoPage.renderPage(sectionName);
           break;
         case 'month':
-          todoPage(sectionName);
+          TodoPage.renderPage(sectionName);
           break;
         case 'upcoming':
-          todoPage(sectionName);
+          TodoPage.renderPage(sectionName);
           break;
         case 'completed':
-          todoPage(null, sectionName);
+          TodoPage.renderPage(null, sectionName);
           break; 
         default:
-          todoPage(sectionName);
+          TodoPage.renderPage(sectionName);
           break; 
       }
     });
@@ -110,7 +110,7 @@ function handleAddTaskModal() {
 
     console.log(projectInput);
 
-    todoPage(projectInput);
+    TodoPage.renderPage(projectInput);
     document.querySelector('#taskDialogContainer > form').reset();
     addTaskDialog.close();
   });

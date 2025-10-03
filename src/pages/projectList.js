@@ -1,6 +1,6 @@
 import { getAllProjects } from "../controllers/TodoController";
 import { capitalize } from "../includes/capitalize";
-import todoPage from "./todoPage";
+import TodoPage from "./TodoPage";
 import deleteIcon from '../icons/deleteProject.svg';
 
 export default function projectList() {
@@ -29,7 +29,7 @@ export default function projectList() {
 
       taskContainer.textContent = '';
 
-      todoPage();
+      TodoPage.renderPage();
     });
 
     const p = document.createElement('p');
